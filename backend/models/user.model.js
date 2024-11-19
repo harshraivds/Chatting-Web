@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import validator from "validator";
 
 const userSchema = new mongoose.Schema(
 	{
@@ -21,10 +22,18 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			enum: ["male", "female"],
 		},
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+			validate: [validator.isEmail, "Please Enter a valid Email"],
+		},
 		profilePic: {
 			type: String,
 			default: "",
 		},
+		resetPasswordToken: String,
+        resetPasswordExpire: Date,
 		// createdAt, updatedAt => Member since <createdAt>
 	},
 	{ timestamps: true }
