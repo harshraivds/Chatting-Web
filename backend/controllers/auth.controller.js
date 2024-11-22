@@ -126,7 +126,7 @@ export const forgotPassword = async (req, res) => {
 		// Send reset link via email
 		const resetUrl = `$${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 		const maskedResetUrl = `${process.env.FRONTEND_URL}/password/reset/**********`; // Masked URL
-		const message = `You requested a password reset. Click the link below to reset your password:\n\n${maskedResetUrl}\n\nIf you did not request this, please ignore this email.`;
+		const message = `You requested a password reset. Click the link below to reset your password:\n\n${resetUrl}\n\nIf you did not request this, please ignore this email.`;
 
 		try {
 			await sendEmail({
